@@ -1,0 +1,75 @@
+/* Set up the grid */
+.container {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    grid-template-rows: repeat(6, 1fr);
+    gap: 5px;
+    height: 500px;
+  }
+  
+  .cell {
+    background-color: #eee;
+    border: 1px solid #ccc;
+    width: 100%;
+    height: 100%;
+    position: relative;
+  }
+  
+  /* Set up the battery and wire cells */
+  .battery,
+  .wire {
+    background-color: #000;
+  }
+  
+  .right {
+    background-image: url('right.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+  }
+  
+  .down {
+    background-image: url('down.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+  }
+  
+  .left {
+    background-image: url('left.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+  }
+  
+  .up {
+    background-image: url('up.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+  }
+  
+  .battery {
+    border-radius: 50%;
+    width: 60%;
+    height: 60%;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    box-shadow: 0 0 5px rgb(255, 0, 0);
+  }
+  
+  .bulb {
+    border-radius: 50%;
+    width: 60%;
+    height: 60%;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    box-shadow: 0 0 5px rgb(0, 195, 255);
+  }
+  
+  .bulb.lit {
+    background-color: yellow;
+  }
+  
