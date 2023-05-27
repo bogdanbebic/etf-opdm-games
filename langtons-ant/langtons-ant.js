@@ -19,12 +19,29 @@ for (let i = 0; i < numRows; i++) {
 }
 
 // set up the ant
-let antRow = Math.floor(numRows / 2);
-let antCol = Math.floor(numCols / 2);
-let antDirection = 0;
-let currentSpeed = 1;
+let antRow;
+let antCol;
+let antDirection;
+let currentSpeed;
+let currentNumStates;
 let maxSpeed = 128;
 let currentNumStates = 2;
+
+// set ant initial state
+function setInitialState()
+{
+    antRow = Math.floor(numRows / 2);
+    antCol = Math.floor(numCols / 2);
+    antDirection = 0;
+
+    currentSpeed = 1;
+    updateSpeedText(currentSpeed);
+
+    currentNumStates = 2;
+    updateNumStates(currentNumStates);
+
+    isRunning = false;
+}
 
 // update the ant's position and direction based on the color of the cell it's on
 function updateAnt() {
@@ -94,6 +111,7 @@ startButton.addEventListener('click', () => {
 // set up the event listener for the reset button
 const resetButton = document.getElementById('reset');
 resetButton.addEventListener('click', () => {
+    setInitialState()
     clearGrid();
 });
 
