@@ -4,18 +4,50 @@
 <head>
   <title>Langton's Ant</title>
   <style>
-    canvas {
-      border: 2px solid red;
+    body {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+
+    .line {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-bottom: 1px;
+    }
+
+    #canvas {
+      margin: 2px;
+      border: 2px solid blueviolet;
+    }
+
+    button {
+      margin: 0 5px;
     }
   </style>
 </head>
 
 <body>
-  <canvas id="canvas" width="800" height="600"></canvas>
-  <br>
-  <button id="start">Start</button>
-  <button id="randomize">Randomize</button>
-  <button id="reset">Reset</button>
+  <canvas id="canvas" width="400" height="400"></canvas>
+
+  <div class="line">
+    <button id="start">Start</button>
+    <!-- <button id="randomize">Randomize</button> -->
+    <button id="reset">Reset</button>
+  </div>
+  <div class="line">
+    <p id="currentSpeed"></p>
+    <button id="speedUp">Speed up</button>
+    <button id="slowDown">Slow down</button>
+  </div>
+  <div class="line">
+    <p id="maxNumStates"></p>
+    <button id="increaseStateCount">Increase state number</button>
+    <button id="decreaseStateCount">Decrease state number</button>
+  </div>
   <script src="langtons-ant.js"></script>
 </body>
 
