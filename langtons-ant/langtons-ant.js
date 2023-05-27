@@ -25,7 +25,7 @@ let antDirection;
 let currentSpeed;
 let currentNumStates;
 let maxSpeed = 128;
-let currentNumStates = 2;
+let isRunning = false;
 
 // set ant initial state
 function setInitialState()
@@ -92,10 +92,17 @@ function clearGrid() {
     drawGrid();
 }
 
+
 // set up the event listener for the start button
 const startButton = document.getElementById('start');
 startButton.addEventListener('click', () => {
+    isRunning = true;
+
     setInterval(() => {
+        if (!isRunning) {
+            return;
+        }
+
         for (let i = 0; i < currentSpeed; i++)
             updateAnt();
         drawGrid();
@@ -113,6 +120,12 @@ const resetButton = document.getElementById('reset');
 resetButton.addEventListener('click', () => {
     setInitialState()
     clearGrid();
+});
+
+// set up the event listener for the stop button
+const stopButton = document.getElementById('stop');
+stopButton.addEventListener('click', () => {
+    isRunning = false;
 });
 
 // set up the event listener for the speedUp button
@@ -165,5 +178,4 @@ function updateNumStates(currentNumStates) {
 
 // draw the initial grid
 drawGrid();
-updateSpeedText(currentSpeed);
-updateNumStates(currentNumStates);
+setInitialState()
