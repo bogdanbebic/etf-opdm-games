@@ -39,15 +39,30 @@ function getNumNeighbors(board, row, col) {
     return numNeighbors;
 }
 
+function drawBoard(ctx, board) {
+    ctx.clearRect(0, 0, width, height);
+    for (let i = 0; i < board.length; i++) {
+        for (let j = 0; j < board[i].length; j++) {
+            if (board[i][j]) {
+                ctx.fillRect(j * size, i * size, size, size);
+            }
+        }
+    }
+}
+
 function startGame(board, ctx) {
     drawBoard(ctx, board);
     setInterval(() => {
-        const nextBoard = getNextBoard(board);
-        drawBoard(ctx, nextBoard);
-        board = nextBoard;
+        board = getNextBoard(board);
+        board = getNextBoard(board);
+        board = getNextBoard(board);
+        board = getNextBoard(board);
+        board = getNextBoard(board);
+        board = getNextBoard(board);
+        drawBoard(ctx, board);
     }, 100);
 }
 
 startGame(board1, ctx1);
 startGame(board2, ctx2);
-startGame(board3, ctx3);
+// startGame(board3, ctx3);

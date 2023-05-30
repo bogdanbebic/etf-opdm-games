@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Relational Algebra Game</title>
+</head>
+<body>
+  <h1>Relational Algebra Game</h1>
+  <p>Current values: A = <span id="valueA"></span>, B = <span id="valueB"></span>, C = <span id="valueC"></span>, D = <span id="valueD"></span></p>
+  <p id="question"></p>
+  <input type="radio" id="trueOption" name="answer" value="true">
+  <label for="trueOption">True</label>
+  <br>
+  <input type="radio" id="falseOption" name="answer" value="false">
+  <label for="falseOption">False</label>
+  <br>
+  <button onclick="checkAnswer()">Submit</button>
+  <p id="result"></p>
+  <p id="score">Score: <span id="scoreValue">0</span></p>
+
+  <script>
+    let score = 0;
+    let A, B, C, D;
+
+    // Array of relational algebra questions
+    const questions = [
+      { question: "A > B", expression: "A > B" },
+      { question: "A < B", expression: "A < B" },
+      { question: "A >= B", expression: "A >= B" },
+      { question: "A <= B", expression: "A <= B" },
+      { question: "A === B", expression: "A === B" },
+      { question: "A !== B", expression: "A !== B" },
+      { question: "A + B > C - D", expression: "A + B > C - D" },
+      { question: "A * B === C / D", expression: "A * B === C / D" },
+      { question: "A % B === 0", expression: "A % B === 0" },
+      { question: "A === B || C === D", expression: "A === B || C === D" },
+      { question: "A !== B && C !== D", expression: "A !== B && C !== D" },
+      // Add more questions here...
+    ];
+
+    let currentQuestionIndex = 0;
+
+    // Function to display a new question
+    function displayQuestion() {
+      const questionElement = document.getElementById("question");
+      questionElement.textContent = questions[currentQuestionIndex].question;
+      evaluateExpression();
+    }
+
+    // Function to update the display of current values
+    function updateValuesDisplay() {
+      document.getElementById("valueA").textContent = A.toString();
+      document.getElementById("valueB").textContent = B.toString();
+      document.getElementById("valueC").textContent = C.toString();
+      document.getElementById("valueD").textContent = D.toString();
+    }
+
+    // Function to generate random values for A, B, C, and D
+    function generateRandomValues() {
+      A = Math.floor(Math.random() * 10) + 1;
+      B = Math.floor(Math.random() * 10) + 1;
+      C = Math.floor(Math.random() * 10) + 1;
+      D = Math.floor(Math.random() * 10) + 1;
+    }
+
+    // Function to evaluate the expression dynamically
+    function evaluateExpression() {
+      const expression = questions[currentQuestionIndex].expression;
+      const result = eval(expression);
+      questions[currentQuestionIndex].answer = result;
+    }
+
+    // Function to check the user's answer
+    function checkAnswer() {
+      const selectedOption = document.querySelector('input[name="answer"]:checked');
+      if (selectedOption) {
+        const answer = selectedOption.value === "true";
+        if (answer === questions[currentQuestionIndex].answer) {
+          document.getElementById("result").textContent = "Correct!";
+          score++;
+        } else {
+          document.getElementById("result").textContent = "Incorrect!";
+        }
+
+        // Move to the next question
+        currentQuestionIndex++;
+        if (currentQuestionIndex < questions.length) {
+          generateRandomValues();
+          displayQuestion();
+          updateValuesDisplay();
+          document.getElementById("scoreValue").textContent = score.toString();
+        } else {
+          // Game over
+          document.getElementById("question").textContent = "Game Over";
+          document.getElementById("trueOption").disabled = true;
+          document.getElementById("falseOption").disabled = true;
+          document.getElementById("result").textContent = "";
+        }
+      }
+    }
+
+    // Start the game
+    generateRandomValues();
+    displayQuestion();
+    updateValuesDisplay();
+  </script>
+</body>
+</html>
