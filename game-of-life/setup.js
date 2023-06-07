@@ -1,14 +1,14 @@
 const canvas1 = document.getElementById('canvas1');
 const canvas2 = document.getElementById('canvas2');
-// const canvas3 = document.getElementById('canvas3');
+const canvas3 = document.getElementById('canvas3');
 const ctx1 = canvas1.getContext('2d');
 const ctx2 = canvas2.getContext('2d');
-// const ctx3 = canvas3.getContext('2d');
+const ctx3 = canvas3.getContext('2d');
 const size = 5;
 const boardWidth = 100;
 const boardHeight = 100;
-const width = canvas1.width = canvas2.width = boardWidth * size;
-const height = canvas1.height = canvas2.height = boardHeight * size;
+const width = canvas1.width = canvas2.width = canvas3.width = boardWidth * size;
+const height = canvas1.height = canvas2.height = canvas3.height = boardHeight * size;
 
 function createEmptyBoard(rows, cols) {
     return new Array(rows).fill(null).map(() => new Array(cols).fill(false));
@@ -16,7 +16,7 @@ function createEmptyBoard(rows, cols) {
 
 let board1 = setupRandomBoard();
 let board2 = setupGliderGunBoardV2();
-let board3 = setupStablePufferBoard(boardWidth, boardHeight);
+let board3 = setupBunnies();
 
 function setupRandomBoard() {
     let board = createEmptyBoard(boardWidth, boardHeight);
@@ -30,7 +30,7 @@ function setupRandomBoard() {
 
 function setupGliderGunBoardV2() {
     let board = createEmptyBoard(boardWidth, boardHeight);
-  
+
    // lower-left square
   board[5][1] = true;
   board[5][2] = true;
@@ -120,7 +120,7 @@ function setupGliderGunBoardV2() {
   board[4][boardWidth - 36] = true;
   
     return board;
-  }
+}
 
 function setupGliderGunBoard() {
     let board = createEmptyBoard(boardWidth, boardHeight);
@@ -172,6 +172,24 @@ function setupGliderGunBoard() {
     return board;
 }
 
+function setupBunnies() {
+  let board = createEmptyBoard(boardWidth, boardHeight);
+
+  board[32][30] = true;
+
+  board[33][32] = true;
+  board[34][32] = true;
+  board[35][31] = true;
+  board[35][33] = true;
+
+  board[32][36] = true;
+  board[33][36] = true;
+  board[34][35] = true;
+  board[34][37] = true;
+
+  return board;
+}
+
 function setupStablePufferBoard(boardWidth, boardHeight) {
     let board = createEmptyBoard(boardWidth, boardHeight);
   
@@ -210,7 +228,7 @@ function setupStablePufferBoard(boardWidth, boardHeight) {
     board[startX + 13][startY + 5] = true;
   
     return board;
-  }
+}
 
 function setupBeehiveBoard(boardWidth, boardHeight) {
     let board = createEmptyBoard(boardWidth, boardHeight);
@@ -230,7 +248,7 @@ function setupBeehiveBoard(boardWidth, boardHeight) {
     }
   
     return board;
-  }
+}
 
 function setupStablePufferBoard() {
     let matrix = createEmptyBoard(boardWidth, boardHeight);

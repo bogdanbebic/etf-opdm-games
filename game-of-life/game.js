@@ -56,13 +56,10 @@ function startGame(board, ctx) {
         board = getNextBoard(board);
         board = getNextBoard(board);
         board = getNextBoard(board);
-        board = getNextBoard(board);
-        board = getNextBoard(board);
-        board = getNextBoard(board);
         drawBoard(ctx, board);
     }, 100);
 }
 
 startGame(board1, ctx1);
 startGame(board2, ctx2);
-// startGame(board3, ctx3);
+startGame(board3, ctx3);
