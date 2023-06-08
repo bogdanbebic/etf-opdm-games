@@ -15,9 +15,9 @@ window.addEventListener('DOMContentLoaded', () => {
         cells.push(cell);
       }
     }
-  
     // Generate non-clickable cells representing logical gates
     generateNonClickableCells();
+    checkNonClickableCells();
   
     function toggleCell() {
       const isClickable = this.classList.contains('clickable');
@@ -62,7 +62,7 @@ window.addEventListener('DOMContentLoaded', () => {
 
         if (cell.children.length == 0 &&
             !cell.classList.contains('on') &&
-            ((gateType === 'and' && !hasAdjacentAndCells(cell) && !isEdgeCell(cell)) || gateType != 'and')) {
+            (!hasAdjacentAndCells(cell) && !isEdgeCell(cell))) {
           
           const requiredOnCount = gateType === 'and' ? 4 : 1;
   
@@ -127,7 +127,7 @@ window.addEventListener('DOMContentLoaded', () => {
         for (const [row, col] of adjacentIndices) {
             if (row >= 0 && row < rows && col >= 0 && col < columns) {
                 const adjacentCell = cells[row * columns + col];
-                if (adjacentCell.dataset.gateType === 'and') {
+                if (adjacentCell.dataset.gateType === 'and' || adjacentCell.dataset.gateType === 'or') {
                     return true;
                 }
             }
@@ -143,7 +143,5 @@ window.addEventListener('DOMContentLoaded', () => {
 
         return rowIndex === 0 || rowIndex === rows - 1 || colIndex === 0 || colIndex === columns - 1;
     }
-
-    checkNonClickableCells();
   });
   
