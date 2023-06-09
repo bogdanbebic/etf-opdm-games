@@ -3,28 +3,73 @@
 <head>
   <title>Relational Algebra Game</title>
   <style>
+    body {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 85vh;
+    }
     .back-button {
       position: absolute;
       top: 10px;
       right: 10px;
     }
+    td {
+      border: 2px solid lightcoral;
+      padding: 20px 30px;
+    }
+    th {
+      border: 2px solid darkolivegreen;
+      padding: 20px 40px;
+      font-size: 20px;
+    }
+    table {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    button {
+      margin-top: 10px;
+    }
   </style>
 </head>
 <body>
   <a href="./../index.html" class="back-button">Back</a>
-  <h1>Relational Algebra Game</h1>
-  <p>Current values: A = <span id="valueA"></span>, B = <span id="valueB"></span>, C = <span id="valueC"></span>, D = <span id="valueD"></span></p>
-  <p id="question"></p>
-  <input type="radio" id="trueOption" name="answer" value="true">
-  <label for="trueOption">True</label>
-  <br>
-  <input type="radio" id="falseOption" name="answer" value="false">
-  <label for="falseOption">False</label>
-  <br>
-  <button onclick="checkAnswer()">Submit</button>
-  <p id="result"></p>
-  <p id="score">Score: <span id="scoreValue">0</span></p>
-
+  <div style="text-align: center;">
+    <h1 style="font-size: 40px;">Relational Algebra Game</h1>
+    <table>
+      <tr>
+        <th>Variable</th>
+        <th>Value</th>
+      </tr>
+      <tr>
+        <td>A</td>
+        <td><span id="valueA"></span></td>
+      </tr>
+      <tr>
+        <td>B</td>
+        <td><span id="valueB"></span></td>
+      </tr>
+      <tr>
+        <td>C</td>
+        <td><span id="valueC"></span></td>
+      </tr>
+      <tr>
+        <td>D</td>
+        <td><span id="valueD"></span></td>
+      </tr>
+    </table>
+    <p style="font-size: 20px;" id="question"></p>
+    <input type="radio" id="trueOption" name="answer" value="true">
+    <label for="trueOption">True</label>
+    <br>
+    <input type="radio" id="falseOption" name="answer" value="false">
+    <label for="falseOption">False</label>
+    <br>
+    <button onclick="checkAnswer()">Submit</button>
+    <p id="result"></p>
+    <p id="score">Score: <span id="scoreValue">0</span></p>
+  </div>
   <script>
     let score = 0;
     let A, B, C, D;
@@ -50,7 +95,7 @@
     // Function to display a new question
     function displayQuestion() {
       const questionElement = document.getElementById("question");
-      questionElement.textContent = questions[currentQuestionIndex].question;
+      questionElement.textContent = "Question: " + questions[currentQuestionIndex].question;
       evaluateExpression();
     }
 
