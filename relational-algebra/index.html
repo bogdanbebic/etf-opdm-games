@@ -1,160 +1,21 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Relational Algebra Game</title>
-  <style>
-    body {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 85vh;
-    }
-    .back-button {
-      position: absolute;
-      top: 10px;
-      right: 10px;
-    }
-    td {
-      border: 2px solid lightcoral;
-      padding: 20px 30px;
-    }
-    th {
-      border: 2px solid darkolivegreen;
-      padding: 20px 40px;
-      font-size: 20px;
-    }
-    table {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-    }
-    button {
-      margin-top: 10px;
-    }
-  </style>
+    <title>Relational Algebra Quiz</title>
+    <link rel="stylesheet" type="text/css" href="styles.css">
 </head>
 <body>
-  <a href="./../index.html" class="back-button">Back</a>
-  <div style="text-align: center;">
-    <h1 style="font-size: 40px;">Relational Algebra Game</h1>
-    <table>
-      <tr>
-        <th>Variable</th>
-        <th>Value</th>
-      </tr>
-      <tr>
-        <td>A</td>
-        <td><span id="valueA"></span></td>
-      </tr>
-      <tr>
-        <td>B</td>
-        <td><span id="valueB"></span></td>
-      </tr>
-      <tr>
-        <td>C</td>
-        <td><span id="valueC"></span></td>
-      </tr>
-      <tr>
-        <td>D</td>
-        <td><span id="valueD"></span></td>
-      </tr>
-    </table>
-    <p style="font-size: 20px;" id="question"></p>
-    <input type="radio" id="trueOption" name="answer" value="true">
-    <label for="trueOption">True</label>
-    <br>
-    <input type="radio" id="falseOption" name="answer" value="false">
-    <label for="falseOption">False</label>
-    <br>
-    <button onclick="checkAnswer()">Submit</button>
-    <p id="result"></p>
-    <p id="score">Score: <span id="scoreValue">0</span></p>
-  </div>
-  <script>
-    let score = 0;
-    let A, B, C, D;
-
-    // Array of relational algebra questions
-    const questions = [
-      { question: "A > B", expression: "A > B" },
-      { question: "A < B", expression: "A < B" },
-      { question: "A >= B", expression: "A >= B" },
-      { question: "A <= B", expression: "A <= B" },
-      { question: "A === B", expression: "A === B" },
-      { question: "A !== B", expression: "A !== B" },
-      { question: "A + B > C - D", expression: "A + B > C - D" },
-      { question: "A * B === C / D", expression: "A * B === C / D" },
-      { question: "A % B === 0", expression: "A % B === 0" },
-      { question: "A === B || C === D", expression: "A === B || C === D" },
-      { question: "A !== B && C !== D", expression: "A !== B && C !== D" },
-      // Add more questions here...
-    ];
-
-    let currentQuestionIndex = 0;
-
-    // Function to display a new question
-    function displayQuestion() {
-      const questionElement = document.getElementById("question");
-      questionElement.textContent = "Question: " + questions[currentQuestionIndex].question;
-      evaluateExpression();
-    }
-
-    // Function to update the display of current values
-    function updateValuesDisplay() {
-      document.getElementById("valueA").textContent = A.toString();
-      document.getElementById("valueB").textContent = B.toString();
-      document.getElementById("valueC").textContent = C.toString();
-      document.getElementById("valueD").textContent = D.toString();
-    }
-
-    // Function to generate random values for A, B, C, and D
-    function generateRandomValues() {
-      A = Math.floor(Math.random() * 10) + 1;
-      B = Math.floor(Math.random() * 10) + 1;
-      C = Math.floor(Math.random() * 10) + 1;
-      D = Math.floor(Math.random() * 10) + 1;
-    }
-
-    // Function to evaluate the expression dynamically
-    function evaluateExpression() {
-      const expression = questions[currentQuestionIndex].expression;
-      const result = eval(expression);
-      questions[currentQuestionIndex].answer = result;
-    }
-
-    // Function to check the user's answer
-    function checkAnswer() {
-      const selectedOption = document.querySelector('input[name="answer"]:checked');
-      if (selectedOption) {
-        const answer = selectedOption.value === "true";
-        if (answer === questions[currentQuestionIndex].answer) {
-          document.getElementById("result").textContent = "Correct!";
-          score++;
-        } else {
-          document.getElementById("result").textContent = "Incorrect!";
-        }
-
-        // Move to the next question
-        currentQuestionIndex++;
-        if (currentQuestionIndex < questions.length) {
-          generateRandomValues();
-          displayQuestion();
-          updateValuesDisplay();
-          document.getElementById("scoreValue").textContent = score.toString();
-        } else {
-          // Game over
-          document.getElementById("question").textContent = "Game Over";
-          document.getElementById("trueOption").disabled = true;
-          document.getElementById("falseOption").disabled = true;
-          document.getElementById("result").textContent = "";
-        }
-      }
-    }
-
-    // Start the game
-    generateRandomValues();
-    displayQuestion();
-    updateValuesDisplay();
-  </script>
+    <a href="./../index.html" class="back-button">Back</a>
+    <div>
+      <h1>Relational Algebra Quiz</h1>
+      <div id="quiz">
+          <div id="question"></div>
+          <div id="choices"></div>
+          <button onclick="checkAnswer()">Submit</button>
+          <div id="result"></div>
+          <div id="score"></div>
+      </div>
+    </div>
+    <script src="script.js"></script>
 </body>
 </html>
