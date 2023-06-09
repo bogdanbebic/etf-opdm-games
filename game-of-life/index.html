@@ -5,21 +5,44 @@
     <title>Conway's Game of Life</title>
     <style>
         canvas {
-            border: 2px solid red;
+            border: 3px solid lightcoral;
+            margin: 0px 20px;
         }
         body {
             display: flex;
             justify-content: center;
             align-items: center;
-            height: 100vh;
+            height: 90vh;
+        }
+        .back-button {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+        }
+        .container {
+            text-align: center;
+        }
+
+        h1 {
+            font-size: 40px;
         }
     </style>
 </head>
 
 <body>
-    <canvas id="canvas1"></canvas>
-    <canvas id="canvas2"></canvas>
-    <canvas id="canvas3"></canvas>
+    <a href="./../index.html" class="back-button">Back</a>
+    <div class="container">
+        <h1>Randomly Generated</h1>
+        <canvas id="canvas1"></canvas>
+    </div>
+    <div class="container">
+        <h1>Glider Gun</h1>
+        <canvas id="canvas2" style="border: 3px solid lightsteelblue"></canvas>
+    </div>
+    <div class="container">
+        <h1>Bunnies</h1>
+        <canvas id="canvas3" style="border: 3px solid lightgreen"></canvas>
+    </div>
     <script src="setup.js"></script>
     <script src="game.js"></script>
 </body>

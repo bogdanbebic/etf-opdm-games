@@ -9,7 +9,7 @@
       flex-direction: column;
       justify-content: center;
       align-items: center;
-      height: 100vh;
+      height: 90vh;
     }
 
     .line {
@@ -26,12 +26,39 @@
 
     button {
       margin: 0 5px;
+      background-color: white;
+      border: 1px solid lightsteelblue;
+    }
+
+    button:active {
+      margin: 0 5px;
+      background-color: lightsteelblue;
+      border: 1px solid lightsteelblue;
+    }
+
+    .back-button {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+    }
+
+    .container {
+            text-align: center;
+            margin-bottom: 15px;
+    }
+
+    h1 {
+      font-size: 55px;
     }
   </style>
 </head>
 
 <body>
-  <canvas id="canvas" width="400" height="400"></canvas>
+  <a href="./../index.html" class="back-button">Back</a>
+  <div class="container">
+    <h1>Langton's Ant</h1>
+    <canvas id="canvas" width="700" height="550"></canvas>
+  </div>
 
   <div class="line">
     <button id="start">Start</button>
